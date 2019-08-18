@@ -24,7 +24,7 @@ yarn-error.log*
 **/obj
 
 **/node_modules
-
+server/wwwroot/*
 !server/wwwroot/.gitkeep
 
 .vscode/*
