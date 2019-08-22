@@ -63,7 +63,7 @@ namespace server
                     spa.UseReactDevelopmentServer("start --prefix ../../client");
                 }
             });
-
+            app.UseCors();
 
         }
     }

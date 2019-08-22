@@ -7,9 +7,11 @@ namespace server.Context
     {
         public MainContext(DbContextOptions<MainContext> options) :base(options)
         {
-            
+            ChangeTracker.LazyLoadingEnabled = false;
         }
 
         public DbSet<TestEntity> Test{ get; set; }
+        public DbSet<Unit> Units{ get; set; }
+        
     }
 }
