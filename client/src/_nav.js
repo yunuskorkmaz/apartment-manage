@@ -17,6 +17,11 @@ export default {
                 variant: 'info',
                 text: 'NEW',
             },
+        },
+        {
+            name : 'Tanımlamalar',
+            url : '/definitions',
+            icon : 'icon-speedometer'
         }
     ],
 };

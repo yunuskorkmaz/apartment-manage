@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using server.Context;
 using server.Entities;
@@ -12,6 +13,13 @@ namespace server.Controllers
         public UnitsController(MainContext _db)
         {
             Db = _db;
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var result = Db.Units.ToList();
+            return Ok(result);
         }
         
         [HttpPost]

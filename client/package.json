@@ -6,14 +6,16 @@
     "@coreui/coreui": "^2.1.12",
     "@coreui/react": "^2.5.2",
     "classnames": "^2.2.6",
+    "ncp": "^2.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.0",
     "reactstrap": "^8.0.1",
     "simple-line-icons": "^2.4.1",
-    "use-react-router": "^1.0.7",
-    "ncp": "^2.0.0"
+    "superagent": "^5.1.0",
+    "superagent-promise": "^1.1.0",
+    "use-react-router": "^1.0.7"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -22,7 +24,7 @@
     "build": "react-scripts build && npm run copy-to-wwwroot",
     "clean-server": "rimraf server/wwwroot",
     "copy-to-wwwroot": "npm run clean-server && ncp ./build ../server/wwwroot",
-    "prod-build" : "npm install && npm run-script build"
+    "prod-build": "npm install && npm run-script build"
   },
   "eslintConfig": {
     "extends": "react-app"
