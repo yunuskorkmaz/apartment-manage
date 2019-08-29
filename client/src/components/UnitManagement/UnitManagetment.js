@@ -3,22 +3,23 @@ import {Card, CardBody, CardHeader,Col, Table,Button} from "reactstrap";
 import {AppSwitch} from "@coreui/react";
 import {UnitStore} from "../../context/Unit/UnitStore";
 import actions from "../../context/Unit/UnitActions";
+import AddUnitModal from './AddUnitModal';
 
 function UnitManagetment(props){
-    const {state,dispatch} = React.useContext(UnitStore);
-
+    const unitContext = React.useContext(UnitStore);
+    const [openModal, setOpenModal] = React.useState(false)
     useEffect(()=>{
 
-        state.units.length === 0 && actions.fetchData(dispatch)
-    },[state]);
-    
+        unitContext.state.units.length === 0 && actions.fetchData(unitContext.dispatch)
+    }, [unitContext.units]);
+
     return (
         <React.Fragment>
             <Col lg={6} md={6}>
                 <Card>
                     <CardHeader>
                         Daireler
-                        <Button className={'float-right'} size={'sm'} >
+                        <Button className={'float-right'} size={'sm'} onClick={()=> setOpenModal(true)}>
                             <i className={'icon-plus'}/>
                             {' '}Ekle</Button>
                     </CardHeader>
@@ -32,31 +33,29 @@ function UnitManagetment(props){
                             </tr>
                             </thead>
                             <tbody>
-                            {state.units.map((item,i) =>{
+                            {
+                                unitContext.state.units.map((item,i) =>{
                                 return (
                                     <tr key={i}>
                                         <td>
-                                            {item.no}
+                                            {item.No}
                                         </td>
                                         <td>
-                                            <AppSwitch className={'mx-1'} color={'primary'}  disabled checked={item.status} label  />
+                                            <AppSwitch className={'mx-1'} color={'primary'}  disabled checked={item.Status} label  />
                                         </td>
                                         <td>
-                                            <Button size={'sm'}>Düzenle</Button>
+                                            <Button size={'sm'} >Düzenle</Button>
                                         </td>
                                     </tr>
 
                                 )
-                            })}
+                            })
+                        }
                             </tbody>
                         </Table>
-
-                        {/*<ListGroup>*/}
-                        {/*{state.units.map((item,i) =>{*/}
-                        {/*return <ListGroupItem key={i}>{item.no} - {item.status}</ListGroupItem>*/}
-                        {/*})}*/}
-                        {/*</ListGroup>*/}
                     </CardBody>
+
+                    <AddUnitModal open={openModal} toggle={() => setOpenModal(!openModal)}></AddUnitModal>
                 </Card>
             </Col>
 

@@ -17,7 +17,7 @@ const request = {
 
 const Units = {
     getAll :  () =>request.get("/units/getall"),
-    create : unit => request.post("/units/create",{unit})
+    create : unit => request.post("/units/create",unit)
 };
 
 export default {

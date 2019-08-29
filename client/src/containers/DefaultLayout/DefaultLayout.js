@@ -41,7 +41,7 @@ const DefaultLayout = (props) => {
                             <Breadcrumb>
                                 <BreadcrumbItem active>{routes.find(a => a.path == '/').name}</BreadcrumbItem>
                             </Breadcrumb>
-                            : <AppBreadcrumb />
+                            : <AppBreadcrumb appRoutes={routes} />
                     }
                     <Container fluid>
                         <Switch>
