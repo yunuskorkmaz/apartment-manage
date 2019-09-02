@@ -23,6 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build": "react-scripts build && npm run copy-to-wwwroot",
+    "only-build" : "react-scripts build",
     "clean-server": "rimraf server/wwwroot",
     "copy-to-wwwroot": "npm run clean-server && ncp ./build ../server/wwwroot",
     "prod-build": "npm install && npm run-script build"
