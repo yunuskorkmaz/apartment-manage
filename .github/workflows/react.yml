@@ -1,0 +1,16 @@
+name: React
+on: [pull_request, push]
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 10.x
+      uses: actions/setup-node@v1
+      with:
+        version: 10.x
+    - name: Build
+      working-directory : client/
+      run: |
+        npm install
+        react-scripts build
