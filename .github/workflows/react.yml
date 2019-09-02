@@ -13,4 +13,4 @@ jobs:
       working-directory : client/
       run: |
         npm install
-        react-scripts build
+        npm run only-build
