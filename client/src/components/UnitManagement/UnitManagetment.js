@@ -4,15 +4,21 @@ import {AppSwitch} from "@coreui/react";
 import {UnitStore} from "../../context/Unit/UnitStore";
 import actions from "../../context/Unit/UnitActions";
 import AddUnitModal from './AddUnitModal';
+import ConfirmButton from '../../components/shared/confirmButton'
 
 function UnitManagetment(props){
+    
     const unitContext = React.useContext(UnitStore);
-    const [openModal, setOpenModal] = React.useState(false)
+    const [openModal, setOpenModal] = React.useState(false);
+    const confirmRef = React.createRef();
+    
     useEffect(()=>{
-
         unitContext.state.units.length === 0 && actions.fetchData(unitContext.dispatch)
     }, [unitContext.units]);
-
+    
+    const handleDelete = (data) => {
+        actions.delete(data,unitContext.dispatch);
+    };
     return (
         <React.Fragment>
             <Col lg={6} md={6}>
@@ -36,7 +42,7 @@ function UnitManagetment(props){
                             {
                                 unitContext.state.units.map((item,i) =>{
                                 return (
-                                    <tr key={i}>
+                                    <tr key={item.Id}>
                                         <td>
                                             {item.No}
                                         </td>
@@ -45,17 +51,18 @@ function UnitManagetment(props){
                                         </td>
                                         <td>
                                             <Button size={'sm'} >Düzenle</Button>
+                                            <ConfirmButton data={item.Id} confirm={handleDelete} />
                                         </td>
                                     </tr>
-
+                        
                                 )
                             })
                         }
                             </tbody>
                         </Table>
                     </CardBody>
-
-                    <AddUnitModal open={openModal} toggle={() => setOpenModal(!openModal)}></AddUnitModal>
+                    
+                    <AddUnitModal open={openModal} toggle={() => setOpenModal(!openModal)}/>
                 </Card>
             </Col>
 
