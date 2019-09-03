@@ -16,8 +16,9 @@ const request = {
 
 
 const Units = {
-    getAll :  () =>request.get("/units/getall"),
-    create : unit => request.post("/units/create",unit)
+    getAll : () => request.get("/units/getall"),
+    create : unit => request.post("/units/create",unit),
+    delete : id => request.get("/units/delete?id="+id)
 };
 
 export default {
