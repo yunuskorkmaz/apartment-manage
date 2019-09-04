@@ -1,0 +1,7 @@
+tbody tr td.operation{
+    text-align: right;
+}
+
+tbody tr td.operation button:not(:last-child){
+    margin-right: 5px;
+}

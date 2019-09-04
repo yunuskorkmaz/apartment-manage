@@ -6,6 +6,7 @@ import routes from './routes'
 import '@coreui/coreui/dist/css/coreui.min.css';
 import '@coreui/icons/css/coreui-icons.min.css';
 import "simple-line-icons/css/simple-line-icons.css";
+import './assets/main.css'
 //
 
 import DefaultLayout from './containers/DefaultLayout/DefaultLayout';
