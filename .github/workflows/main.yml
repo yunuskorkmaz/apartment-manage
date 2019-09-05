@@ -8,10 +8,14 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js 10.x
-      uses: Borales/actions-yarn@master
+      uses: actions/setup-node@v1
+      with:
+        version: 10.x
+    - name: Build
+      working-directory : client/
       run: |
-        --cwd ./client install
-        --cwd ./client run only-build
+        npm install
+        npm run only-build
   dotnet_ci:
     runs-on: ubuntu-latest
     steps:
