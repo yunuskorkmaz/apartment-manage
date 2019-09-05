@@ -1,8 +1,11 @@
 import agent from './../../agent'
-import {UNIT_FETCH_ALL, ADDED_UNIT, DELETED_UNIT, HANDLE_ERROR_UNIT} from "../../actiontypes";
+import { UNIT_FETCH_ALL, ADDED_UNIT, DELETED_UNIT, HANDLE_ERROR_UNIT, START_UNIT_FETCHING} from "../../actiontypes";
 
 export default {
     fetchData : dispatch => {
+        dispatch({
+            type : START_UNIT_FETCHING
+        });
         agent.Units.getAll().then(data => {
             dispatch({
                 type: UNIT_FETCH_ALL,
