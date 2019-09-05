@@ -12,10 +12,9 @@ jobs:
       with:
         version: 10.x
     - name: Build
-      working-directory : client/
       run: |
-        npm install
-        npm run only-build
+        yarn --cwd ./client install
+        yarn --cwd ./client run only-build
   dotnet_ci:
     runs-on: ubuntu-latest
     steps:
