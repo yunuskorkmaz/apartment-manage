@@ -1,6 +1,6 @@
 workflow "Build" {
   resolves = ["Borales/actions-yarn@master", "Setup Dotnet for use with actions"]
-  on = "pull_request"
+  on = "push"
 }
 
 action "Borales/actions-yarn@master" {
