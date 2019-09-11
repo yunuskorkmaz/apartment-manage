@@ -28,5 +28,5 @@ server/wwwroot/*
 !server/wwwroot/.gitkeep
 server/appsettings.Development.json
 .vscode/*
-
+.idea
 .history
