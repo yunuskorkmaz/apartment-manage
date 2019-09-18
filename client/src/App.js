@@ -3,13 +3,14 @@ import { HashRouter, Route } from 'react-router-dom'
 import  { PrivateRoute } from './helpers/PrivateRoute'
 import routes from './routes'
 // Styles
-import '@coreui/coreui/dist/css/coreui.min.css';
-import '@coreui/icons/css/coreui-icons.min.css';
-import "simple-line-icons/css/simple-line-icons.css";
-import './assets/main.css'
+// import '@coreui/coreui/dist/css/coreui.min.css';
+// import '@coreui/icons/css/coreui-icons.min.css';
+// import "simple-line-icons/css/simple-line-icons.css";
+// import './assets/main.css'
 //
 
 import DefaultLayout from './containers/DefaultLayout/DefaultLayout';
+import BaseLayout from './containers/BaseLayout';
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
   routes.map(a => a.path != '/' ? paths.push(a.path.replace('/', '')) : null)
   return (
     <HashRouter>
-      <PrivateRoute exact path={`/(|${paths.join('|')})`} component={DefaultLayout} />
+      <PrivateRoute exact path={`/(|${paths.join('|')})`} component={BaseLayout} />
       <Route path="/login" component={() => <div>Login</div>} />
     </HashRouter>
   );
