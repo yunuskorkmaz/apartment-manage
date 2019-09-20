@@ -3,62 +3,64 @@ import { Drawer } from 'antd'
 import useMedia from 'react-media-hook2';
 import Sider from 'antd/lib/layout/Sider';
 
+import './mainSidebar.css'
+
 function MainSidebar(props) {
-    const {collapse} = props;
+    const { collapse, onCollapse,children,isMobile } = props;
 
-    const setCollapse = val =>{
-        props.onCollapse(val);
-    }
-
-    const isMobile = useMedia({
-        onChange : val =>{
-            setCollapse(false);
-        },
-        query : "(max-width:599px)"
-    })[0];
+    
 
     return (
         <>
-        {isMobile 
-        ? (
-            <Drawer
-                closable={false}
-                visible={!isMobile ? false : !collapse}
-                placement={"left"}
-                width={200}
-                className="main-sidebar"
-                onClose={() => setCollapse(true)}
-                style={{ padding: 0, height: "100vh" }}
-            >
+            {isMobile
+                ? (
+                    <Drawer
+                        closable={false}
+                        visible={!isMobile ? false : !collapse}
+                        placement={"left"}
+                        width={200}
+                        className="main-sidebar"
+                        onClose={() => onCollapse(true)}
+                        style={{ padding: 0, height: "100vh" }}
+                    >
                         <Sider
+                            trigger={null}
                             collapsible
                             collapsed={isMobile ? false : collapse}
                             breakpoint={"lg"}
                             onCollapse={val => {
-                                setCollapse(val);
+                                if (!isMobile) {
+                                    onCollapse(val);
+
+                                }
                             }}
                         >
-                            <div className="ant-pro-sider-menu-logo">asd</div>
-                            
+                            {children}
                         </Sider>
-            </Drawer>
-        )
-        :(
+                    </Drawer>
+                )
+                : (
                     <Sider
                         collapsible
                         collapsed={isMobile ? false : collapse}
                         breakpoint={"lg"}
+                        style={{
+                            overflow: 'auto',
+                            height: '100vh',
+                            position: 'fixed',
+                            left: 0,
+                        }}
                         onCollapse={val => {
-                            setCollapse(val);
+                            if (!isMobile) {
+                                onCollapse(val);
+
+                            }
                         }}
                     >
-                        <div className="ant-pro-sider-menu-logo">asd</div>
-                       
+                        {children}
                     </Sider>
-        )
-        
-        }
-            
+                )
+            }
         </>
     )
 }

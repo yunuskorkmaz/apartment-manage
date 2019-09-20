@@ -1,0 +1,7 @@
+.main-sidebar .ant-drawer-body {
+  padding: 0;
+}
+.main-sidebar .ant-drawer-content-wrapper,
+.main-sidebar .ant-drawer-content {
+  background-color: #001529;
+}
