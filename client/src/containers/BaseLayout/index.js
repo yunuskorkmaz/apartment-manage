@@ -3,9 +3,9 @@ import { Layout, Button } from 'antd'
 import useMedia from 'react-media-hook2';
 
 import 'antd/dist/antd.css'
-import MainSidebar from './MainSidebar';
+import MainSidebar ,{SidebarHeader, MainMenu} from './MainSidebar';
 import MainHeader from './MainHeader';
-
+import Main from './test'
 const { Header, Sider, Content, Footer } = Layout;
 
 function BaseLayout(props) {
@@ -39,10 +39,11 @@ function BaseLayout(props) {
         <>
             <Layout style={{height:'100vh'}}>
                 <MainSidebar {...sidebarProps}>
-                    asd
+                    <SidebarHeader title={"asdas"} logo={'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg'} />
+                    <MainMenu/>
                 </MainSidebar>
                 
-                <Layout style={{paddingLeft : getPaddingLeft(!isMobile,collapse,200),minWidth:'100vh'}}>
+                <Layout style={{paddingLeft : getPaddingLeft(!isMobile,collapse,250)}}>
                     <MainHeader style={{background:'#fff'}}>
                         <Button onClick={onCollapse} type={"dashed"}>
                             Collapse
@@ -57,4 +58,4 @@ function BaseLayout(props) {
     )
 
 }
-export default BaseLayout;
+export default Main;

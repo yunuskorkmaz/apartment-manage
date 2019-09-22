@@ -5,3 +5,27 @@
 .main-sidebar .ant-drawer-content {
   background-color: #001529;
 }
+
+.sidebar-logo{
+  height: 64px;
+  margin-left: 24px;
+  margin-right: 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+}
+
+.sidebar-logo img{
+  
+  height: 32px;
+  margin-right: 20px
+}
+
+.sidebar-logo h1{
+  color: #fff;
+  font-size: 1.3rem;
+  margin: 0;
+  line-height: 32px;
+}
+
