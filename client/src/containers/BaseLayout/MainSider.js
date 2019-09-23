@@ -1,22 +1,15 @@
 import React from "react";
-
-import { Layout, Button } from "antd";
-import {  Menu, Icon, Drawer } from "antd";
-import useMedia from "react-media-hook2";
+import { Layout, Menu, Icon, Drawer } from "antd";
+import './mainSider.css'
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
-export  function MainSider(props) {
-    const { collapse } = props;
+export default function MainSider(props) {
+    const { collapse,isMobile } = props;
     const setCollapse = val => {
         props.onCollapse(val);
     };
-    const isMobile = useMedia({
-        onChange: val => {
-            setCollapse(false);
-        },
-        query: "(max-width: 599px)"
-    })[0];
+    
     return (
         <>
             {isMobile ? (
@@ -30,11 +23,13 @@ export  function MainSider(props) {
                     style={{ padding: 0, height: "100vh" }}
                 >
                     <Sider
-                        collapsible
+                        
                         collapsed={isMobile ? false : collapse}
                         breakpoint={"lg"}
                         onCollapse={val => {
-                            setCollapse(val);
+                            if(!isMobile){
+                                setCollapse(val);
+                            }
                         }}
                     >
                         <div className="ant-pro-sider-menu-logo">asd</div>
@@ -47,7 +42,9 @@ export  function MainSider(props) {
                         collapsed={collapse}
                         breakpoint={"lg"}
                         onCollapse={val => {
-                            setCollapse(val);
+                            if (!isMobile) {
+                                setCollapse(val);
+                            }
                         }}
                     >
                         <div className="ant-pro-sider-menu-logo">asd</div>
@@ -102,27 +99,3 @@ export function MainMenu(props) {
         </Menu>
     );
 }
-
-const { Header, Content, Footer } = Layout;
-
-function Main(props) {
-    const [collapse, setCollapse] = React.useState(true);
-    return (
-        <>
-            <Layout style={{ height: "100vh" }}>
-                <MainSider collapse={collapse} onCollapse={val => setCollapse(val)} />
-                <Layout>
-                    <Header>
-                        <Button onClick={() => setCollapse(!collapse)} type={"dashed"}>
-                            Collapse
-                        </Button>
-                    </Header>
-                    <Content> content</Content>
-                    <Footer>Footer</Footer>
-                </Layout>
-            </Layout>
-        </>
-    );
-}
-
-export default Main;

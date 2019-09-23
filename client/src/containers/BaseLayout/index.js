@@ -1,61 +1,34 @@
 import React from 'react';
 import { Layout, Button } from 'antd'
-import useMedia from 'react-media-hook2';
-
 import 'antd/dist/antd.css'
-import MainSidebar ,{SidebarHeader, MainMenu} from './MainSidebar';
+import useMedia from "react-media-hook2";
+import MainSider from "./MainSider";
 import MainHeader from './MainHeader';
-import Main from './test'
-const { Header, Sider, Content, Footer } = Layout;
 
-function BaseLayout(props) {
+const { Content, Footer } = Layout;
+
+function Main(props) {
     const [collapse, setCollapse] = React.useState(true);
-    const onCollapse = () => {
-        setCollapse(!collapse);
-    }
 
     const isMobile = useMedia({
         onChange: val => {
             setCollapse(true);
         },
-        query: "(max-width:599px)"
+        query: "(max-width: 599px)"
     })[0];
-
-
-    const sidebarProps = {
-        isMobile,
-        collapse,
-        onCollapse : val => setCollapse(val)
-    }
-
-    const getPaddingLeft = (hasLeftPadding,collapsed,siderWith) =>{
-        if(hasLeftPadding){
-            return collapsed ? 80 : siderWith;
-        }
-        return undefined;
-    }
 
     return (
         <>
-            <Layout style={{height:'100vh'}}>
-                <MainSidebar {...sidebarProps}>
-                    <SidebarHeader title={"asdas"} logo={'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg'} />
-                    <MainMenu/>
-                </MainSidebar>
-                
-                <Layout style={{paddingLeft : getPaddingLeft(!isMobile,collapse,250)}}>
-                    <MainHeader style={{background:'#fff'}}>
-                        <Button onClick={onCollapse} type={"dashed"}>
-                            Collapse
-                        </Button>
-                    </MainHeader>
-                    <Content>
-                        test
-                    </Content>
+            <Layout style={{ height: "100vh" }}>
+                <MainSider collapse={collapse} onCollapse={val => setCollapse(val)} isMobile={isMobile} />
+                <Layout>
+                    <MainHeader onCollapse={() => setCollapse(!collapse)}/>
+                    <Content>asdasd</Content>
+                    <Footer>Footer</Footer>
                 </Layout>
             </Layout>
         </>
-    )
-
+    );
 }
+
 export default Main;
