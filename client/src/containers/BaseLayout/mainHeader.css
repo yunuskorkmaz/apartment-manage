@@ -1,1 +1,13 @@
-.ant-layout-header { padding: 0}
+.ant-layout-header {
+    background-color: #fff;
+    padding: 0;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, .08)
+}
+
+.collapse-trigger {
+    height: 64px;
+    padding: 19px 24px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all .3s, padding 0s;
+}
