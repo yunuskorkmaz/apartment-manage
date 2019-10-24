@@ -3,19 +3,19 @@ import { Dropdown } from 'antd';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-function HeaderDropDown({overlayClassName:cls,...restProps}) {
+function HeaderDropDown({ overlayClassName: cls, ...restProps }) {
 
-    return ( 
+    return (
         <>
-            <Dropdown overlayClassName={classNames('header-dropdown-container',cls)} {...restProps} />
+            <Dropdown overlayClassName={classNames('header-dropdown-container', cls)} {...restProps} />
         </>
     )
 }
 
 HeaderDropDown.propTypes = {
     overlayClassName: PropTypes.string,
-    overlay : PropTypes.any,
-    placement : PropTypes.string
+    overlay: PropTypes.any,
+    placement: PropTypes.string
 }
 
 HeaderDropDown.defaultProps = {
@@ -23,4 +23,4 @@ HeaderDropDown.defaultProps = {
 }
 
 
-export default  HeaderDropDown;
+export default HeaderDropDown;
