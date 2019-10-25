@@ -3,11 +3,16 @@ import { Dropdown } from 'antd';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-function HeaderDropDown({ overlayClassName: cls, ...restProps }) {
-
+function HeaderDropDown({ overlayClassName: cls, ...props }) {
+    const { overlay ,...restProps} = props;
+    const overlatContent = (
+        <>
+            {overlay}
+        </>
+    )
     return (
         <>
-            <Dropdown overlayClassName={classNames('header-dropdown-container', cls)} {...restProps} />
+            <Dropdown overlay={overlatContent} overlayClassName={classNames('header-dropdown-container', cls)} {...restProps} />
         </>
     )
 }

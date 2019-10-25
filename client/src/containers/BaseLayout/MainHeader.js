@@ -29,22 +29,8 @@ function MainHeader(props) {
 
 
     const renderHeaderContent = () => {
-
-
-        var menuContent = (
-            <Menu>
-                <Menu.Item key="0">
-                    <a href="http://www.alipay.com/">1st menu item</a>
-                </Menu.Item>
-                <Menu.Item key="1">
-                    <a href="http://www.taobao.com/">2nd menu item</a>
-                </Menu.Item>
-                <Menu.Divider />
-                <Menu.Item key="3">3rd menu item</Menu.Item>
-            </Menu>
-        );
         var tabs = (
-            <Tabs style={{ position: 'relative', width: '336px' }} defaultActiveKey="1" >
+            <Tabs style={{ position: 'relative' }} defaultActiveKey="1" >
                 <TabPane tab="Tab 1" key="1">
                     Content of Tab Pane 1
                 </TabPane>
@@ -56,43 +42,26 @@ function MainHeader(props) {
                 </TabPane>
             </Tabs>
         );
-
-        const menu = (
-            <div style={{ "backgroundColor": "#fff", "borderRadius": "4px", border:"1px solid #000"}}>
-                {tabs}
-            </div>
-        );
-
         return (
-            // <HeaderDropdown
-            //     placement="bottomRight"
-            //     overlay={menu}
-            //     // overlayClassName={styles.popover}
-            //     trigger={['click']}
-            //     visible={visible}
-            //     onVisibleChange={setVisible}
-            // >
-            //     <span>
-            //         asd
-            //     </span>
-            // </HeaderDropdown>
-            <HeaderDropdown
-                placement="bottomRight"
-                overlay={menu}
-                trigger={['click']}
-                visible={visible}
-                onVisibleChange={setVisible}>
-                <a className="ant-dropdown-link" href="#">
-                    Click me <Icon type="down" />
-                </a>
-            </HeaderDropdown>
+            <>
+                <HeaderDropdown
+                    placement="bottomRight"
+                    overlay={tabs}
+                    trigger={['click']}
+                    visible={visible}
+                    onVisibleChange={setVisible}>
+                    <span className="header-action">
+                        <Icon type="down" />
+                    </span>
+                </HeaderDropdown>
+            </>
         )
     }
 
     return (
         <Header theme={'light'}>
             {renderCollapsedButton()}
-            <div style={{ float: 'right', marginRight: '100px' }}>
+            <div style={{ float: 'right', paddingRight: '25px' }}>
                 {renderHeaderContent()}
             </div>
             {children}

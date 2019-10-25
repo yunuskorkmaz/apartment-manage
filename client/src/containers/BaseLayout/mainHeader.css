@@ -11,3 +11,20 @@
     cursor: pointer;
     transition: all .3s, padding 0s;
 }
+
+.header-action{
+    display: inline-block;
+    height: 100%;
+    padding: 0 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.header-dropdown-container{
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    overflow: hidden;
+    max-width: 336px;
+    
+}
