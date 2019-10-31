@@ -1,15 +1,16 @@
 import React from "react";
 import { Layout, Menu, Icon, Drawer } from "antd";
 import './mainSider.css'
-
+import navigations from '../../_nav';
+import { NavLink } from 'react-router-dom'
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 export default function MainSider(props) {
-    const { collapse,isMobile } = props;
+    const { collapse, isMobile } = props;
     const setCollapse = val => {
         props.onCollapse(val);
     };
-    
+
     return (
         <>
             {isMobile ? (
@@ -23,11 +24,11 @@ export default function MainSider(props) {
                     style={{ padding: 0, height: "100vh" }}
                 >
                     <Sider
-                        
+
                         collapsed={isMobile ? false : collapse}
                         breakpoint={"lg"}
                         onCollapse={val => {
-                            if(!isMobile){
+                            if (!isMobile) {
                                 setCollapse(val);
                             }
                         }}
@@ -90,12 +91,47 @@ export function MainMenu(props) {
                 }
             >
                 <Menu.Item key="6">Team 1</Menu.Item>
-                <Menu.Item key="8">Team 2</Menu.Item>
+                <Menu.Item key="7">Team 2</Menu.Item>
             </SubMenu>
-            <Menu.Item key="9">
-                <Icon type="file" />
-                <span>File</span>
-            </Menu.Item>
+            {
+                navigations.menu.map((item, index) => {
+                    if (item.items) {
+                        return (
+                            <SubMenu
+                                key={index}
+                                title={
+                                    <span>
+                                        {item.icon ? <Icon type={item.icon} /> : null}
+                                        <span>{item.name}</span>
+                                    </span>
+                                }
+                            >
+                                {item.items.map((child, cindex) => {
+                                    return (
+                                        <Menu.Item key={index + "_" + cindex}>
+                                            <NavLink to={child.url || '#'}>
+                                                {child.name}
+                                            </NavLink>
+                                        </Menu.Item>
+                                    )
+                                })}
+                            </SubMenu>
+                        )
+                    }
+                    else {
+                        return (
+                            <Menu.Item key={index}>
+                                <NavLink to={item.url || '#'} >
+                                    {item.icon && <Icon type={item.icon} />}
+                                    <span>
+                                        {item.name}
+                                    </span>
+                                </NavLink>
+                            </Menu.Item>
+                        )
+                    }
+                })
+            }
         </Menu>
     );
 }

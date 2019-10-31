@@ -11,6 +11,7 @@ import routes from './routes'
 
 import DefaultLayout from './containers/DefaultLayout/DefaultLayout';
 import BaseLayout from './containers/BaseLayout';
+import LoginPage from './pages/LoginPage';
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
   return (
     <HashRouter>
       <PrivateRoute exact path={`/(|${paths.join('|')})`} component={BaseLayout} />
-      <Route path="/login" component={() => <div>Login</div>} />
+      <Route path="/login" component={LoginPage} />
     </HashRouter>
   );
 }

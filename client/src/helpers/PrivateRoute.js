@@ -9,7 +9,7 @@ export const PrivateRoute = (props) => {
     return (
         <>
             <Route {...rest}  render={childProps => {
-                if(!state.isLoged){
+                if(!state.isLogined){
                     return <Redirect to={{pathname: '/login'}} />
                 }
                 return <Component {...childProps}/>

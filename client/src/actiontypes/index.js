@@ -3,3 +3,5 @@ export const ADDED_UNIT = "ADDED_UNIT";
 export const HANDLE_ERROR_UNIT = "HANDLE_ERROR_UNIT";
 export const DELETED_UNIT = "DELETED_UNIT";
 export const START_UNIT_FETCHING = "START_UNIT_FETCHING"
+export const USER_LOGIN = "USER_LOGIN";
+export const USER_LOGOUT = "USER_LOGOUT";
