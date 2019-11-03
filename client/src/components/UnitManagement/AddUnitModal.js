@@ -1,15 +1,16 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import PropTypes  from 'prop-types'
 import { AppSwitch } from "@coreui/react";
-import { Modal,ModalHeader, ModalBody, ModalFooter, Button,Form,FormGroup,Label,Input,Col,CustomInput } from 'reactstrap'
+// import { Modal,ModalHeader, ModalBody, ModalFooter, Button,Form,FormGroup,Label,Input,Col,CustomInput } from 'reactstrap'
 import {UnitStore} from "../../context/Unit/UnitStore";
 import actions from "../../context/Unit/UnitActions";
+import { Modal } from 'antd'
 
 
-function AddUnitModal({open,toggle, className}){
+function AddUnitModal({toggle, className}){
 
     const unitContext = React.useContext(UnitStore);
-
+    const [visible, setVisible] = useState(false);
     const [state,setState] = React.useState({
         No: 0,
         Status : true
@@ -33,29 +34,43 @@ function AddUnitModal({open,toggle, className}){
             } 
         }
         
-    }, [unitContext.state.units])
+    }, [state, unitContext.state.units])
 
-    return (<Modal isOpen={open}  toggle={toggle} className={className}>
-         <Form onSubmit={handleSubmit}>
-            <ModalHeader>Daire Ekle</ModalHeader>
-                <ModalBody>
-                    <FormGroup >
-                        <Label for={"No"} >No</Label>
-                        <Input type={"number"} defaultValue={state.No} onChange={handleChange}/>
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for={"Status"}>Durum</Label>
-                        <div>
-                            <CustomInput id="status" type={"switch"} name="Status" checked={state.Status} onChange={handleChange} />
-                        </div>
-                    </FormGroup>
-                </ModalBody>
-            <ModalFooter>
-                <Button color="secondary" onClick={toggle} >Cancel</Button>
-                <Button color="primary" type="submit">Kaydet</Button>{' '}
-            </ModalFooter>
-         </Form>
-    </Modal>)
+    return (
+        <>
+            <Modal 
+                title={'Daire Ekle'}
+                visible={visible}
+                onOk={()=>{
+                    
+                }}
+                onCancel={()=>setVisible(false)}
+                >
+
+            </Modal>
+            {/* <Modal isOpen={open}  toggle={toggle} className={className}>
+                <Form onSubmit={handleSubmit}>
+                    <ModalHeader>Daire Ekle</ModalHeader>
+                        <ModalBody>
+                            <FormGroup >
+                                <Label for={"No"} >No</Label>
+                                <Input type={"number"} defaultValue={state.No} onChange={handleChange}/>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for={"Status"}>Durum</Label>
+                                <div>
+                                    <CustomInput id="status" type={"switch"} name="Status" checked={state.Status} onChange={handleChange} />
+                                </div>
+                            </FormGroup>
+                        </ModalBody>
+                    <ModalFooter>
+                        <Button color="secondary" onClick={toggle} >Cancel</Button>
+                        <Button color="primary" type="submit">Kaydet</Button>{' '}
+                    </ModalFooter>
+                </Form>
+            </Modal> */}
+    </>
+    )
 }
 AddUnitModal.propTypes = {
     open : PropTypes.bool,

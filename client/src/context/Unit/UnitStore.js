@@ -33,3 +33,8 @@ export function UnitStoreProvider(props) {
         </UnitStore.Provider>
     )
 }
+
+export function UseUnitStore() {
+    const { state, dispatch } = React.useContext(UnitStore);
+    return [state, dispatch];
+ }
