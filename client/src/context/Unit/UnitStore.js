@@ -1,10 +1,11 @@
 import React from 'react';
-import { UNIT_FETCH_ALL, ADDED_UNIT, DELETED_UNIT, START_UNIT_FETCHING} from "../../actiontypes";
-
+import { UNIT_FETCH_ALL, ADDED_UNIT, DELETED_UNIT, START_UNIT_FETCHING, OPEN_UNIT_ADD_MODEL, CLOSE_UNIT_ADD_MODEL} from "../../actiontypes";
+import actions from './UnitActions'
 export const UnitStore = React.createContext("");
 
 const initialState = {
     loading : false,
+    addModalVisible : false,
     units: Array()
 };
 
@@ -18,6 +19,10 @@ function reducer(state, action) {
             return {...state, units : state.units.filter(({Id} )=> Id !== action.payload)};
         case START_UNIT_FETCHING:
             return{...state,loading : true}
+        case OPEN_UNIT_ADD_MODEL:
+            return { ...state, addModalVisible : true}
+        case CLOSE_UNIT_ADD_MODEL:
+            return { ...state, addModalVisible : false}
         default :
             return state
     }
@@ -36,5 +41,8 @@ export function UnitStoreProvider(props) {
 
 export function UseUnitStore() {
     const { state, dispatch } = React.useContext(UnitStore);
-    return [state, dispatch];
+    var dispatchActions = {};
+    Object.keys(actions).map((key, index) => dispatchActions[key] = actions[key](dispatch));
+    
+   return [state, dispatchActions];
  }

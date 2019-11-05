@@ -60,7 +60,7 @@ export default function MainSider(props) {
 export function MainMenu(props) {
     return (
         <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-            <Menu.Item key="1">
+            {/* <Menu.Item key="1">
                 <Icon type="pie-chart" />
                 <span>Option 1</span>
             </Menu.Item>
@@ -92,7 +92,7 @@ export function MainMenu(props) {
             >
                 <Menu.Item key="6">Team 1</Menu.Item>
                 <Menu.Item key="7">Team 2</Menu.Item>
-            </SubMenu>
+            </SubMenu> */}
             {
                 navigations.menu.map((item, index) => {
                     if (item.items) {

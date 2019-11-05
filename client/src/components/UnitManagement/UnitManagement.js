@@ -1,15 +1,33 @@
 import React, { useEffect } from 'react';
-import { Row,Col,Card ,Switch,Button, Table, message, Modal} from 'antd'
+import { Col,Card ,Switch,Button, Table, message, Modal} from 'antd'
 import { UseUnitStore } from '../../context/Unit/UnitStore';
-import actions from '../../context/Unit/UnitActions'
+import AddUnitModal from './AddUnitModal';
 
 function UnitManagement(props){
-    const { fetchData} = actions;
-    const [state,dispatch] = UseUnitStore();
-    
+    const [{units,...state},action] = UseUnitStore();
+    const { fetchData,deleteUnit,openAddModal } = action;
+    const { confirm } = Modal;
     useEffect(()=>{
-        state.units.length === 0 && fetchData(dispatch)
-    },[state.units])
+        units.length === 0 && fetchData()
+    },[units])
+
+    const showDeleteConfirm = (id)=>{
+        confirm({
+            title : "Emin Misiniz?",
+            content : "Silmek İstediğinize Emin Misiniz?",
+            okText:"Sil",
+            okType:"danger",
+            cancelText:"İptal",
+            onOk(){
+                deleteUnit  (id);
+                message.success("Başarılı");
+            },
+            oncancel(){
+                message.info("İptal edildi")
+            }
+        })
+    }
+
     const columns = [
         {
             title : "Daire No",
@@ -21,7 +39,7 @@ function UnitManagement(props){
             key : "status",
             dataIndex : "Status",
             render : status => (
-                <Switch onChange={()=> message.success("İşlem Başarılar")} size={'small'} defaultChecked={status} />
+                <Switch onChange={()=> message.success("İşlem Başarılı")} size={'small'} defaultChecked={status} />
             )
         },
         {
@@ -29,7 +47,7 @@ function UnitManagement(props){
             key : "action",
             render : (text,record) =>(
                 <span>
-                    <Button size={'small'} type={'danger'} icon={'delete'}></Button>
+                    <Button onClick={()=>showDeleteConfirm(record.Id)} size='small' type={'danger'} icon={'delete'}></Button>
                 </span>
             )
         }
@@ -37,11 +55,15 @@ function UnitManagement(props){
     return(
         <>
             <Col lg={12} md={12}>
-                <Card size="default" title="Small size card" extra={
-                    <Button type={"dashed"} icon={'plus'}>Ekle</Button>
-                }>
-                    <Table columns={columns} rowKey={'Id'} dataSource={state.units} />
+                <Card 
+                    size="default" title="Daireler" 
+                    extra={
+                        <Button type={"primary"} icon={'plus'} onClick={()=>openAddModal()}>Ekle</Button>
+                    }
+                >
+                    <Table pagination={false} columns={columns} rowKey={'Id'} dataSource={units} />
                 </Card>
+                <AddUnitModal />
             </Col>
         </>
     )

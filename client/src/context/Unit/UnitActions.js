@@ -1,8 +1,8 @@
 import agent from './../../agent'
-import { UNIT_FETCH_ALL, ADDED_UNIT, DELETED_UNIT, HANDLE_ERROR_UNIT, START_UNIT_FETCHING} from "../../actiontypes";
+import { UNIT_FETCH_ALL, ADDED_UNIT, DELETED_UNIT, HANDLE_ERROR_UNIT, START_UNIT_FETCHING, OPEN_UNIT_ADD_MODEL, CLOSE_UNIT_ADD_MODEL} from "../../actiontypes";
 
 export default {
-    fetchData : dispatch => {
+    fetchData : dispatch=> () => {
         dispatch({
             type : START_UNIT_FETCHING
         });
@@ -13,7 +13,7 @@ export default {
             })
         });
     },
-    create : (unit,dispatch) => {
+    create: (dispatch) => unit => {
         agent.Units.create(unit).then(data => {
             dispatch({
                 type : ADDED_UNIT,
@@ -21,7 +21,7 @@ export default {
             })
         })
     },
-    delete : (id,dispatch) =>{
+    deleteUnit : (dispatch) => id =>{
         agent.Units.delete(id).then(data =>{
             if(data.success){
                 dispatch({
@@ -35,6 +35,16 @@ export default {
                     payload : data.message
                 })
             }
+        })
+    },
+    openAddModal : dispatch => () =>{
+        dispatch({
+            type : OPEN_UNIT_ADD_MODEL
+        })
+    },
+    closeAddModal : dispatch => () =>{
+        dispatch({
+            type : CLOSE_UNIT_ADD_MODEL
         })
     }
 }

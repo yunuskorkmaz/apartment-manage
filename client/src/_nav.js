@@ -28,12 +28,12 @@ export default {
         {
             name : 'Ana Sayfa',
             url : '/',
-            icon : '',
+            icon: 'desktop',
         },
         {
             name : "Test 1",
             url : "/test1",
-            icon : "",
+            icon : "user",
             items : [
                 {
                     name: "Test 1.1",
@@ -49,7 +49,7 @@ export default {
         {
             name : "Tanıtımlar",
             url : "/definitions",
-            icon : ""
+            icon : "team"
         }
     ]
 };
