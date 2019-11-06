@@ -4,7 +4,7 @@ import { UseUnitStore } from '../../context/Unit/UnitStore';
 import AddUnitModal from './AddUnitModal';
 
 function UnitManagement(props){
-    const [{units,...state},action] = UseUnitStore();
+    const [{units,loading,...state},action] = UseUnitStore();
     const { fetchData,deleteUnit,openAddModal } = action;
     const { confirm } = Modal;
     useEffect(()=>{
@@ -60,6 +60,7 @@ function UnitManagement(props){
                     extra={
                         <Button type={"primary"} icon={'plus'} onClick={()=>openAddModal()}>Ekle</Button>
                     }
+                    loading={loading}
                 >
                     <Table pagination={false} columns={columns} rowKey={'Id'} dataSource={units} />
                 </Card>

@@ -1,5 +1,5 @@
 import agent from './../../agent'
-import { UNIT_FETCH_ALL, ADDED_UNIT, DELETED_UNIT, HANDLE_ERROR_UNIT, START_UNIT_FETCHING, OPEN_UNIT_ADD_MODEL, CLOSE_UNIT_ADD_MODEL} from "../../actiontypes";
+import { UNIT_FETCH_ALL, ADDED_UNIT, DELETED_UNIT, HANDLE_ERROR_UNIT, START_UNIT_FETCHING, OPEN_UNIT_ADD_MODEL, CLOSE_UNIT_ADD_MODEL, END_UNIT_FETCHING} from "../../actiontypes";
 
 export default {
     fetchData : dispatch=> () => {
@@ -10,8 +10,12 @@ export default {
             dispatch({
                 type: UNIT_FETCH_ALL,
                 payload:  data
-            })
+            });
+             
         });
+        dispatch({
+            type: END_UNIT_FETCHING
+        })
     },
     create: (dispatch) => unit => {
         agent.Units.create(unit).then(data => {
