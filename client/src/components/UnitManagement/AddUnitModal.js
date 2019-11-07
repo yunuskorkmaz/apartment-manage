@@ -6,17 +6,16 @@ import { Modal, Form, InputNumber,Switch } from 'antd'
 function AddUnitModal({ toggle, className,form,...props}) {
     
     const [{ units, addModalVisible}, {closeAddModal,create}] = UseUnitStore()
-    const [nmax, setNmax] = React.useState(0);
-    const { getFieldDecorator } = form;
+    const { getFieldDecorator, setFieldsValue } = form;
 
     useEffect(() => {
         if (units.length != 0) {
-            var nMax = Math.max(...Array.from(units, o => o.No));
-            if (!isNaN(nMax)) {
-                setNmax(nMax + 1)
+            var nmax = Math.max(...Array.from(units, o => o.No));
+            if (!isNaN(nmax)) {
+                setFieldsValue({No:nmax+1})
             }
         }
-    }, [units])
+    }, [units,addModalVisible])
 
     return (
         <>
@@ -37,9 +36,8 @@ function AddUnitModal({ toggle, className,form,...props}) {
                 <Form layout={'inline'}>
                     <Form.Item label="Daire No">
                         {getFieldDecorator('No', {
-                            rules: [{ required: true, message: 'Please input the title of collection!' }],
-                            initialValue : nmax
-                        })(<InputNumber />)}
+                            rules: [{ required: true, message: 'Please input the title of collection!' }]
+                        })(<InputNumber  />)}
                     </Form.Item>
                     <Form.Item label="Durum">
                         {getFieldDecorator('Status', { valuePropName: 'checked',initialValue:true })(<Switch />)}

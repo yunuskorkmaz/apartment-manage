@@ -45,6 +45,7 @@ function UnitManagement(props){
         {
             title : "",
             key : "action",
+            ellipsis:true,
             render : (text,record) =>(
                 <span>
                     <Button onClick={()=>showDeleteConfirm(record.Id)} size='small' type={'danger'} icon={'delete'}></Button>
@@ -62,7 +63,7 @@ function UnitManagement(props){
                     }
                     loading={loading}
                 >
-                    <Table pagination={false} columns={columns} rowKey={'Id'} dataSource={units} />
+                    <Table pagination={false} columns={columns} rowKey={'Id'} size="middle"  dataSource={units} />
                 </Card>
                 <AddUnitModal />
             </Col>

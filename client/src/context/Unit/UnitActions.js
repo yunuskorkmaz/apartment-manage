@@ -11,11 +11,11 @@ export default {
                 type: UNIT_FETCH_ALL,
                 payload:  data
             });
-             
+            dispatch({
+                type: END_UNIT_FETCHING
+            })
         });
-        dispatch({
-            type: END_UNIT_FETCHING
-        })
+        
     },
     create: (dispatch) => unit => {
         agent.Units.create(unit).then(data => {

@@ -4,7 +4,7 @@ import actions from './UnitActions'
 export const UnitStore = React.createContext("");
 
 const initialState = {
-    loading : false,
+    loading : true,
     addModalVisible : false,
     units: Array()
 };
@@ -12,7 +12,7 @@ const initialState = {
 function reducer(state, action) {
     switch (action.type) {
         case UNIT_FETCH_ALL:
-            return {...state, units: [...action.payload],loading:false};
+            return {...state, units: [...action.payload]};
         case ADDED_UNIT :
             return {...state,addModalVisible:false, units: [...state.units,action.payload]};
         case DELETED_UNIT:
