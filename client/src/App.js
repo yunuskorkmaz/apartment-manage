@@ -9,7 +9,6 @@ import routes from './routes'
 // import './assets/main.css'
 //
 
-import DefaultLayout from './containers/DefaultLayout/DefaultLayout';
 import BaseLayout from './containers/BaseLayout';
 import LoginPage from './pages/LoginPage';
 

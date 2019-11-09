@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Button,Tabs } from 'antd'
+import { Layout} from 'antd'
 import 'antd/dist/antd.css'
 import useMedia from "react-media-hook2";
 import MainSider from "./MainSider";
@@ -9,7 +9,6 @@ import routes from '../../routes'
 
 
 const { Content, Footer } = Layout;
-const { TabPane } = Tabs
 
 function Main(props) {
     const [collapse, setCollapse] = React.useState(true);
