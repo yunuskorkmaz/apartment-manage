@@ -4,10 +4,10 @@ import { AppSwitch } from "@coreui/react";
 import { UnitStore } from "../../context/Unit/UnitStore";
 import actions from "../../context/Unit/UnitActions";
 import AddUnitModal from './AddUnitModal';
-import ConfirmButton from '../../components/shared/confirmButton'
+import ConfirmButton from '../shared/confirmButton'
 import LoadingComponent from '../shared/LoadingComponent';
 
-function UnitManagetment(props) {
+function UnitManagetmentLegacy(props) {
 
     const unitContext = React.useContext(UnitStore);
     const [openModal, setOpenModal] = React.useState(false);
@@ -73,4 +73,4 @@ function UnitManagetment(props) {
     )
 }
 
-export default UnitManagetment;
+export default UnitManagetmentLegacy;

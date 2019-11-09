@@ -1,12 +1,15 @@
 import React, {useEffect} from 'react';
-import UnitManagetment from "../components/UnitManagement/UnitManagetment";
+import UnitManagement from "../components/UnitManagement/UnitManagement";
+import { Row } from 'antd';
 
 function DefinitionsPage(prop) {
 
     return (
-        <React.Fragment>
-            <UnitManagetment/>
-        </React.Fragment>
+        <div style={{margin:'24px'}}>
+            <Row>
+                <UnitManagement/>
+            </Row>
+        </div>
     )
 }
 
