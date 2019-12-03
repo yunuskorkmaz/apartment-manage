@@ -13,6 +13,7 @@
         "typescript": "3.7.2"
     },
     "scripts": {
+        "start": "react-scripts start",
         "build": "npm run prod-build",
         "build-copy": "react-scripts build && npm run copy-to-wwwroot",
         "only-build": "react-scripts build",
