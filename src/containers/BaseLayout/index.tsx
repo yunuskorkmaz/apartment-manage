@@ -28,7 +28,7 @@ const Main: React.SFC<{}> = (props) => {
                     <Content>
                         <Switch>
                             {routes.map((route, idx) => {
-                                console.log(route)
+                            
                                 return (
                                     <Route key={idx} {...route} />
                                 )

@@ -47,7 +47,7 @@ export default {
         },
         {
             name: "Daire Yönetimi",
-            url: "/test",
+            url: "/units",
             icon: "team"
         }
     ]
