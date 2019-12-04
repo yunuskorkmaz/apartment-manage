@@ -1,0 +1,30 @@
+.ant-layout-header {
+    background-color: #fff;
+    padding: 0;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, .08)
+}
+
+.collapse-trigger {
+    height: 64px;
+    padding: 19px 24px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all .3s, padding 0s;
+}
+
+.header-action{
+    display: inline-block;
+    height: 100%;
+    padding: 0 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.header-dropdown-container{
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    overflow: hidden;
+    max-width: 250px;
+    
+}
