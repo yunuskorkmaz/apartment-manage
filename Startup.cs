@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using apartment_manage.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 
 namespace ApartmentManage
 {
@@ -25,14 +27,18 @@ namespace ApartmentManage
 
         
         public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllers();
+        {   
+            services.AddMainContext(Configuration);
+            services.AddControllers().AddJsonOptions(o =>
+                {
+                    o.JsonSerializerOptions.PropertyNamingPolicy = null;
+                    o.JsonSerializerOptions.DictionaryKeyPolicy = null;
+                });
             services.AddSpaStaticFiles(configuration => {
                 configuration.RootPath = "wwwroot";
             });
         }
 
-        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

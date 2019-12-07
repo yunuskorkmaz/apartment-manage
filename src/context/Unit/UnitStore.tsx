@@ -1,19 +1,13 @@
 import React from 'react';
 import { ReducerType, ActionType } from '../GenericTypes';
 import { CreateActions, UnitActions } from './UnitActions';
-
-
+import { UnitDispatches } from './UnitActionTypes';
 
 export type UnitStore = {
     loading : boolean,
     addModelvisible : boolean,
     units : Array<any>,
 }
-
-type UnitTestAction = ActionType<typeof TEST, number>
-type UnitTest2Action = ActionType<typeof TEST2, Array<any>>
-
-export type UnitActionsType = UnitTestAction | UnitTest2Action;
 
 const initialState : UnitStore = {
     loading : true,
@@ -23,18 +17,14 @@ const initialState : UnitStore = {
 
 interface IUnitStoreProps {
     state : UnitStore,
-    dispatch: React.Dispatch<UnitActionsType>;
+    dispatch: React.Dispatch<UnitDispatches>;
 }
 export const UnitContext = React.createContext({} as IUnitStoreProps);
 
-const TEST = 'TEST';
-const TEST2 = 'TEST2';
-
-
-const reducer: ReducerType<UnitStore, UnitActionsType> = (state ,action ) =>{
+const reducer: ReducerType<UnitStore, UnitDispatches> = (state ,action ) =>{
     switch(action.type){
-        case TEST:
-            return {...state,units : [...state.units,action.payload]}
+        case "UNIT_FETCH_ALL":
+            return {...state,units : action.payload}
         default:
             return state;
     }
