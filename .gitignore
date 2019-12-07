@@ -20,3 +20,4 @@ bin/
 obj/
 **/bin/**
 **obj/**
+appsettings.Development.json
