@@ -1,8 +1,9 @@
 import React from 'react';
 import { UseUnitStore } from '../../context/Unit/UnitStore';
-import { Modal } from 'antd';
+import { Modal, Form } from 'antd';
 
-export const AddUnitModal : React.SFC<{}> = (props) => {
+@Form.create()
+const AddUnitModal : React.SFC<{}> = (props) => {
     
     const [] = UseUnitStore();
 
