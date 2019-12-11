@@ -21,3 +21,4 @@ obj/
 **/bin/**
 **obj/**
 appsettings.Development.json
+.vscode/

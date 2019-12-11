@@ -1,13 +1,14 @@
 import React, { useEffect }  from 'react';
 import { UseUnitStore } from '../../context/Unit/UnitStore';
-import { Col, Card, Table, Switch, message } from 'antd';
+import { Col, Card, Table, Switch, message, Button } from 'antd';
 
 
 const UnitManagement : React.SFC = (props) => {
 
-    const [{units,...unitState},action] = UseUnitStore();
+    const [{units,loading,...state},action] = UseUnitStore();
+    const { fetchData,openAddModal,closeAddModal } = action;
     useEffect(() => {
-        units.length === 0 && action.fetchData()
+        units.length === 0 && fetchData()
     }, [units])
     
 
@@ -41,14 +42,13 @@ const UnitManagement : React.SFC = (props) => {
 
     return(
         <>
-        {console.log(units)}
             <Col lg={12} md={12}>
                 <Card
                     size="default" title="Daireler"
-                    // extra={
-                    //     <Button type={"primary"} icon={'plus'} onClick={() => openAddModal()}>Ekle</Button>
-                    // }
-                    // loading={loading}
+                    extra={
+                        <Button type={"primary"} icon={'plus'} onClick={() => openAddModal()}>Ekle</Button>
+                    }
+                    loading={loading}
                 >
                     <Table pagination={false} columns={columns} rowKey={'Id'} size="middle" dataSource={units} />
                 </Card>

@@ -25,6 +25,8 @@ const reducer: ReducerType<UnitStore, UnitDispatches> = (state ,action ) =>{
     switch(action.type){
         case "UNIT_FETCH_ALL":
             return {...state,units : action.payload}
+        case "END_UNIT_FETCHING":
+            return {...state, loading : false}
         default:
             return state;
     }
