@@ -5,13 +5,19 @@ import { UnitDispatches } from './UnitActionTypes';
 
 export type UnitStore = {
     loading : boolean,
-    addModelvisible : boolean,
-    units : Array<any>,
+    Modalvisible : boolean,
+    units : Array<Unit>,
+}
+
+export interface Unit{
+    Id : number,
+    No : number,
+    Status : boolean
 }
 
 const initialState : UnitStore = {
     loading : true,
-    addModelvisible : false,
+    Modalvisible : false,
     units : []
 }
 
@@ -27,6 +33,22 @@ const reducer: ReducerType<UnitStore, UnitDispatches> = (state ,action ) =>{
             return {...state,units : action.payload}
         case "END_UNIT_FETCHING":
             return {...state, loading : false}
+        case "OPEN_UNIT_MODEL":
+            return {...state,Modalvisible : true}
+        case "CLOSE_UNIT_MODEL":
+            return {...state,Modalvisible : false}
+        case "ADDED_UNIT":
+            return {...state,units :[...state.units,action.payload],Modalvisible : false}
+        case "DELETED_UNIT":
+            return {...state,units : state.units.filter( ({Id}) => Id !== action.payload )}
+        case "EDITED_UNIT":
+            var updatedUnits =  state.units.map(unit => {
+                if(unit.Id == action.payload?.Id){
+                    return action.payload as Unit;
+                }
+                return unit;
+            })
+            return {...state, units : updatedUnits,Modalvisible : false}
         default:
             return state;
     }
